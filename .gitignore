@@ -1,0 +1,21 @@
+# Node / Vue
+client/node_modules/
+client/dist/
+server/node_modules/
+server/uploads/
+*.log
+
+# Environment files
+**/.env
+**/.env.*
+
+# Java subproject build artifacts
+student-info-system/target/
+student-info-system/data/students.db
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+.vscode/

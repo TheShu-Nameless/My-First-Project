@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>静态原型 - AI分诊</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">AI 分诊（静态原型）</div>
+      <div class="nav">
+        <a href="index.html">首页</a>
+        <a href="appointments.html">挂号预约</a>
+        <a href="triage.html">AI分诊</a>
+        <a href="login.html">退出</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>症状输入</h3>
+      <textarea id="symptom" rows="5" placeholder="例如：近两日咽痛、低热、乏力"></textarea>
+      <div style="margin-top: 10px;">
+        <button id="triageBtn">生成分诊建议（演示）</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>分诊结果</h3>
+      <div id="triageResult" class="muted">点击上方按钮后显示示例结果。</div>
+    </div>
+
+    <div class="card">
+      <h3>历史记录（示例）</h3>
+      <table>
+        <thead>
+          <tr><th>症状</th><th>推荐科室</th><th>置信度</th><th>建议</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>咽痛+咳嗽</td><td>中医内科</td><td>80%</td><td>建议先门诊初诊，再根据医嘱复查。</td></tr>
+          <tr><td>腰痛+扭伤</td><td>针灸推拿科</td><td>82%</td><td>建议优先骨伤方向评估，必要时影像检查。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="./assets/app.js"></script>
+</body>
+</html>

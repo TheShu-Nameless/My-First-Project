@@ -1,0 +1,4 @@
+/target/
+/data/students.db
+*.iml
+.idea/
