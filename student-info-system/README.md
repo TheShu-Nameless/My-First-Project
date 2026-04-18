@@ -77,6 +77,8 @@ java -cp target/student-info-system-1.0.0.jar com.example.sms.app.MainApp
 1. `student-info-system.zip`（整个项目源码压缩包）
 2. `student-info-system-1.0.0.jar`（可执行 jar，双击或 `java -jar` 都可运行）
 
+以上两个文件由一键脚本生成，位于**本目录**（与 `pom.xml` 同级），不会出现在仓库最外层根目录。
+
 可使用一键脚本自动生成提交物：
 
 ```bash

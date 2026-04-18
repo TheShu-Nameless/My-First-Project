@@ -3,3 +3,4 @@ dist/
 .DS_Store
 .lighthouse/
 .lh-profile/
+lighthouse-*.json
