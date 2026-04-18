@@ -37,33 +37,29 @@ for (const [relSrc, relDst] of pairs) {
   if (r.status !== 0) process.exit(r.status ?? 1);
 }
 
-const tmpZip = path.join(
-  process.env.TEMP || process.env.TMP || '/tmp',
-  `tcm-src-${Date.now()}.zip`,
+// 使用 robocopy + Compress-Archive，避免 Windows 自带 tar 生成的 zip 在部分解压工具中显示异常
+const zipScript = path.join(__dirname, 'build-source-zip.ps1');
+const finalZip = path.join(root, '项目源码-提交版.zip');
+const zr = spawnSync(
+  'powershell.exe',
+  [
+    '-NoProfile',
+    '-ExecutionPolicy',
+    'Bypass',
+    '-File',
+    zipScript,
+    '-Root',
+    root,
+    '-OutZip',
+    finalZip,
+  ],
+  { stdio: 'inherit', shell: false },
 );
-if (fs.existsSync(tmpZip)) fs.unlinkSync(tmpZip);
-
-const excludes = [
-  '--exclude=.git',
-  '--exclude=node_modules',
-  '--exclude=student-info-system/.tools',
-  '--exclude=client/node_modules',
-  '--exclude=server/node_modules',
-  '--exclude=client/dist',
-  '--exclude=server/uploads',
-  '--exclude=tools/gen-docx/node_modules',
-];
-
-const tarArgs = ['-a', '-c', '-f', tmpZip, ...excludes, '.'];
-const tr = spawnSync('tar', tarArgs, { cwd: root, stdio: 'inherit', shell: false });
-if (tr.status !== 0) {
-  console.error('tar 打包失败');
-  process.exit(tr.status ?? 1);
+if (zr.status !== 0) {
+  console.error('源码 ZIP 打包失败');
+  process.exit(zr.status ?? 1);
 }
 
-const finalZip = path.join(root, '项目源码-提交版.zip');
-if (fs.existsSync(finalZip)) fs.unlinkSync(finalZip);
-fs.renameSync(tmpZip, finalZip);
 const mb = (fs.statSync(finalZip).size / (1024 * 1024)).toFixed(2);
 console.log(`ZIP: ${mb} MB -> ${finalZip}`);
 console.log('全部完成。');
