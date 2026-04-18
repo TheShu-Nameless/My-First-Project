@@ -20,7 +20,11 @@ student-info-system/.tools/
 /student-info-system-1.0.0.jar
 /student-info-system-1.0.0-jar.zip
 
+# Local docx build tool
+tools/gen-docx/node_modules/
+
 # IDE / OS
+~$*
 .DS_Store
 Thumbs.db
 .idea/
