@@ -12,6 +12,8 @@ server/uploads/
 # Java subproject build artifacts
 student-info-system/target/
 student-info-system/data/students.db
+# Local JDK/Maven bundles (too large for GitHub; install separately)
+student-info-system/.tools/
 
 # IDE / OS
 .DS_Store
