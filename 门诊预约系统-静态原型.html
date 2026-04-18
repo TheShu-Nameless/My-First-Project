@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>门诊预约系统（静态原型）</title>
+  <style>
+    :root {
+      --bg: #0d1324;
+      --bg2: #14203a;
+      --card: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.16);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.78);
+      --ok: #3ecf8e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      background: radial-gradient(800px 400px at 10% -10%, rgba(62, 207, 142, 0.2), transparent),
+        linear-gradient(160deg, var(--bg), var(--bg2));
+      min-height: 100vh;
+    }
+    .page { display: none; }
+    .page.is-active { display: block; }
+    .wrap {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 24px 0 36px;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .brand { font-size: 22px; font-weight: 700; }
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 14px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+    }
+    .nav a.active {
+      border-color: var(--line);
+      background: var(--card);
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .muted { color: var(--muted); }
+    .grid4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .stat {
+      text-align: center;
+      padding: 12px 8px;
+      border-right: 1px solid var(--line);
+    }
+    .stat:last-child { border-right: none; }
+    .num { font-size: 24px; font-weight: 700; margin-top: 6px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      padding: 10px 6px;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+    button {
+      background: var(--ok);
+      color: #062111;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .login {
+      width: min(460px, 92vw);
+      margin: 80px auto 0;
+    }
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 12px;
+    }
+    @media (max-width: 900px) {
+      .grid4, .row, .row3 { grid-template-columns: 1fr; }
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+      .stat:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 登录：默认首屏 -->
+  <div id="page-login" class="page is-active">
+    <div class="login card">
+      <h2>门诊预约与智能分诊系统</h2>
+      <p class="muted">单文件静态原型（双击本文件打开；不连接后端）</p>
+      <form id="loginForm">
+        <div class="card">
+          <label>账号</label>
+          <input value="TheShu" />
+        </div>
+        <div class="card">
+          <label>密码</label>
+          <input type="password" placeholder="请输入密码" />
+        </div>
+        <button type="submit">登录（演示跳转）</button>
+      </form>
+      <p class="muted" style="margin-top: 12px;">登录后进入首页，可用顶部导航切换各页。</p>
+    </div>
+  </div>
+
+  <div id="page-home" class="page">
+    <div class="wrap">
+      <div class="top">
+        <div class="brand">门诊预约系统（静态原型）</div>
+        <nav class="nav">
+          <a href="#home">首页</a>
+          <a href="#appointments">挂号预约</a>
+          <a href="#triage">AI分诊</a>
+          <a href="#login">退出</a>
+        </nav>
+      </div>
+      <div class="card">
+        <h3>首页概览</h3>
+        <div class="grid4">
+          <div class="stat"><div class="muted">科室数</div><div class="num">4</div></div>
+          <div class="stat"><div class="muted">医生数</div><div class="num">9</div></div>
+          <div class="stat"><div class="muted">今日预约</div><div class="num">36</div></div>
+          <div class="stat"><div class="muted">待就诊</div><div class="num">12</div></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card">
+          <h3>公告</h3>
+          <p>1. 请提前10分钟签到。</p>
+          <p>2. 发热患者请佩戴口罩前往导诊台。</p>
+        </div>
+        <div class="card">
+          <h3>说明</h3>
+          <p class="muted">本页为单文件 HTML 内嵌样式与脚本，不依赖其它文件。</p>
+          <p class="muted">真实系统请使用主项目启动脚本运行。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-appointments" class="page">
+    <div class="wrap">
+      <div class="top">
+        <div class="brand">挂号预约（静态原型）</div>
+        <nav class="nav">
+          <a href="#home">首页</a>
+          <a href="#appointments">挂号预约</a>
+          <a href="#triage">AI分诊</a>
+          <a href="#login">退出</a>
+        </nav>
+      </div>
+      <div class="card">
+        <h3>预约表单</h3>
+        <div class="row3">
+          <div>
+            <label>科室</label>
+            <select>
+              <option>中医内科</option>
+              <option>针灸推拿科</option>
+              <option>中医妇科</option>
+              <option>中医儿科</option>
+            </select>
+          </div>
+          <div>
+            <label>医生</label>
+            <select>
+              <option>张仲景</option>
+              <option>李时珍</option>
+              <option>华佗</option>
+            </select>
+          </div>
+          <div>
+            <label>日期</label>
+            <input type="date" />
+          </div>
+        </div>
+        <div class="card">
+          <label>症状描述</label>
+          <textarea rows="3" placeholder="请输入症状描述"></textarea>
+        </div>
+        <button type="button" id="demoBookBtn">提交预约（演示）</button>
+      </div>
+      <div class="card">
+        <h3>我的预约（示例）</h3>
+        <table>
+          <thead>
+            <tr><th>日期</th><th>科室</th><th>医生</th><th>状态</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2026-04-13</td><td>中医内科</td><td>张仲景</td><td><span class="tag">已预约</span></td></tr>
+            <tr><td>2026-04-15</td><td>针灸推拿科</td><td>李时珍</td><td><span class="tag">待就诊</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-triage" class="page">
+    <div class="wrap">
+      <div class="top">
+        <div class="brand">AI 分诊（静态原型）</div>
+        <nav class="nav">
+          <a href="#home">首页</a>
+          <a href="#appointments">挂号预约</a>
+          <a href="#triage">AI分诊</a>
+          <a href="#login">退出</a>
+        </nav>
+      </div>
+      <div class="card">
+        <h3>症状输入</h3>
+        <textarea id="symptom" rows="5" placeholder="例如：近两日咽痛、低热、乏力"></textarea>
+        <div style="margin-top: 10px;">
+          <button type="button" id="triageBtn">生成分诊建议（演示）</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>分诊结果</h3>
+        <div id="triageResult" class="muted">点击上方按钮后显示示例结果。</div>
+      </div>
+      <div class="card">
+        <h3>历史记录（示例）</h3>
+        <table>
+          <thead>
+            <tr><th>症状</th><th>推荐科室</th><th>置信度</th><th>建议</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>咽痛+咳嗽</td><td>中医内科</td><td>80%</td><td>建议先门诊初诊，再根据医嘱复查。</td></tr>
+            <tr><td>腰痛+扭伤</td><td>针灸推拿科</td><td>82%</td><td>建议优先骨伤方向评估，必要时影像检查。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var titles = {
+        login: "静态原型 - 登录",
+        home: "静态原型 - 首页概览",
+        appointments: "静态原型 - 挂号预约",
+        triage: "静态原型 - AI分诊"
+      };
+
+      function parseHash() {
+        var raw = (location.hash || "").replace(/^#/, "").toLowerCase();
+        if (!raw) return "login";
+        if (["login", "home", "appointments", "triage"].indexOf(raw) === -1) return "login";
+        return raw;
+      }
+
+      function showPage(id) {
+        document.querySelectorAll(".page").forEach(function (p) {
+          p.classList.toggle("is-active", p.id === "page-" + id);
+        });
+        document.title = titles[id] || "门诊预约系统（静态原型）";
+        if (id === "login") return;
+        document.querySelectorAll("#page-" + id + " .nav a").forEach(function (a) {
+          var href = a.getAttribute("href") || "";
+          var target = href.replace(/^#/, "").toLowerCase();
+          a.classList.toggle("active", target === id);
+        });
+      }
+
+      function onRoute() {
+        showPage(parseHash());
+      }
+
+      window.addEventListener("hashchange", onRoute);
+      window.addEventListener("DOMContentLoaded", onRoute);
+
+      var form = document.getElementById("loginForm");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          location.hash = "#home";
+        });
+      }
+
+      var triageBtn = document.getElementById("triageBtn");
+      if (triageBtn) {
+        triageBtn.addEventListener("click", function () {
+          var symptom = (document.getElementById("symptom").value || "").trim();
+          if (symptom.length < 4) {
+            alert("请至少输入4个字症状");
+            return;
+          }
+          var dep = "中医内科";
+          if (/腰|颈|肩|扭伤|关节/.test(symptom)) dep = "针灸推拿科";
+          if (/月经|痛经|白带|妇科/.test(symptom)) dep = "中医妇科";
+          if (/儿童|小儿|宝宝|夜啼/.test(symptom)) dep = "中医儿科";
+          var result = document.getElementById("triageResult");
+          result.innerHTML =
+            "<p><strong>推荐科室：</strong>" + dep + "</p>" +
+            "<p><strong>置信度：</strong>78%</p>" +
+            "<p><strong>风险等级：</strong><span class='tag'>中</span></p>" +
+            "<p><strong>建议：</strong>建议先到" + dep + "就诊，由医生面诊后进一步检查。</p>";
+        });
+      }
+
+      var bookBtn = document.getElementById("demoBookBtn");
+      if (bookBtn) {
+        bookBtn.addEventListener("click", function () {
+          alert("静态原型：预约提交成功（演示）");
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

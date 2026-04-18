@@ -63,18 +63,14 @@
     <h2>1. 文档说明</h2>
     <p>本文档用于说明项目中静态 HTML 原型的结构、演示方式，以及与主系统的关系。</p>
 
-    <h2>2. 原型目录</h2>
+    <h2>2. 原型文件</h2>
     <ul>
-      <li><code>static-html/login.html</code>：登录页原型</li>
-      <li><code>static-html/index.html</code>：首页概览原型</li>
-      <li><code>static-html/appointments.html</code>：挂号预约页原型</li>
-      <li><code>static-html/triage.html</code>：AI 分诊页原型</li>
-      <li><code>static-html/assets/style.css</code>：统一样式</li>
-      <li><code>static-html/assets/app.js</code>：前端演示交互脚本</li>
+      <li><code>门诊预约系统-静态原型.html</code>（仓库根目录）：单文件集成登录、首页、挂号预约、AI 分诊等全部静态页面</li>
+      <li>样式与交互脚本已内嵌于该 HTML，无需 <code>assets</code> 或其它附属文件</li>
     </ul>
 
     <h2>3. 打开方式</h2>
-    <p>进入 <code>static-html</code> 目录，双击 <code>login.html</code> 或 <code>index.html</code> 即可在浏览器查看。</p>
+    <p>在项目根目录双击 <code>门诊预约系统-静态原型.html</code> 即可在浏览器中打开；使用页面顶部导航或地址栏 <code>#home</code>、<code>#appointments</code>、<code>#triage</code>、<code>#login</code> 切换页面。</p>
 
     <h2>4. 页面说明</h2>
     <ul>
@@ -85,7 +81,7 @@
     </ul>
 
     <h2>5. 交互机制</h2>
-    <p>页面内交互由 <code>app.js</code> 提供，属于前端本地模拟，不依赖后端 API。</p>
+    <p>页面内交互由内嵌脚本提供，属于前端本地模拟，不依赖后端 API。</p>
     <p>因此表单提交、分诊结果等行为仅用于视觉和流程演示。</p>
 
     <h2>6. 与主系统关系</h2>
@@ -93,13 +89,13 @@
 
     <h2>7. 演示建议</h2>
     <ul>
-      <li>先从 <code>login.html</code> 开始，演示完整跳转链路</li>
-      <li>再展示 <code>appointments.html</code> 和 <code>triage.html</code> 两个核心场景</li>
+      <li>打开单文件后从登录页开始，演示「登录 → 首页 → 各导航」完整链路</li>
+      <li>重点展示「挂号预约」「AI 分诊」两个核心场景</li>
       <li>最后说明静态原型与动态系统的差异边界</li>
     </ul>
 
     <h2>8. 交付建议</h2>
-    <p>提交时可将 <code>static-html</code> 目录与本说明文档一并打包，便于老师独立查看。</p>
+    <p>提交时只需附带本 <code>门诊预约系统-静态原型.html</code> 单文件（可与本说明文档一并打包），老师无需解压目录即可独立查看。</p>
   </main>
 </body>
 </html>
